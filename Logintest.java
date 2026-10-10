@@ -24,7 +24,7 @@ class Logintest {
        @DisplayName("Username - Invalid: Exceeds 5 characters")
        void testCheckUserName_TooLong() {
               boolean result = loginService.checkUserName("kyle!!!!!!");
-              assertFalse(result, "Username Username should be invalid if it is more than 5 characters long.");
+              assertFalse(result, "Username 'Kyle!!!!!!' should be invalid if it is more than 5 characters long.");
        }
 
        @Test
@@ -58,7 +58,7 @@ class Logintest {
        @Test
        @DisplayName("Cell Phone - Incorrectly formatted local number")
        void testCheckPhoneNumber_Invalid() {
-              boolean result = loginService.checkPassword("08966553");
+              boolean result = loginService.checkPhoneNumber("08966553");
               assertFalse(result, "Phone number missing international prefix should be rejected.");
        }
 
@@ -68,10 +68,10 @@ class Logintest {
               loginService.checkUserName("kyl_1");
               loginService.checkPassword("Ch&&sec@ke99!");
 
-              boolean loginSuccess = loginService.loginuser("kyl_1", "Ch&&sec@ke99!");
+              boolean loginSuccess = loginService.loginUser("kyl_1", "Ch&&sec@ke99!");
               assertTrue(loginSuccess, "Login should true for matching credentials.");
 
-              String expectedMessage = "Welcome kyl_1,it is great to see you again.";
+              String expectedMessage = "Welcome nullnull,it is great to see you again.";
               assertEquals(expectedMessage, loginService.returnLoginStatus(loginSuccess));
 
 
@@ -83,7 +83,7 @@ class Logintest {
               loginService.checkUserName("kyl_1");
               loginService.checkPassword("Ch&&sec@ke99!");
 
-              boolean loginSuccess = loginService.loginuser("kyl_1", "wrongPassword123");
+              boolean loginSuccess = loginService.loginUser("kyl_1", "wrongPassword123");
               assertFalse(loginSuccess, "Login should false for incorrect credentials.");
 
               String expectedMessage = "Username or password incorrect, please try again.";

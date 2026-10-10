@@ -24,8 +24,11 @@ void main() {
         System.out.println("Enter your first name:");
         name = sc.nextLine();
 
+
         System.out.println("Enter your Surname");
         surname = sc.nextLine();
+
+        login.storePersonalDetails(name, surname);
 
    while (!isUsernameValid) {
        System.out.println("Enter your username (Max 5 characters must have an underscore'_'):");
@@ -64,7 +67,7 @@ void main() {
         System.out.println("Enter your password to login:");
         String loginPass = sc.nextLine();
 
-        loginPassed = login.loginuser(loginUser, loginPass);
+        loginPassed = login.loginUser(loginUser, loginPass);
 
         System.out.println(login.returnLoginStatus(loginPassed));
     }
