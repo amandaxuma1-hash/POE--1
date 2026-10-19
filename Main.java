@@ -1,5 +1,7 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
 
@@ -188,6 +190,20 @@ public class Main {
             totalMessagesSent++;
 
             System.out.println(messageInstance.printMessages());
+
+            if (handlingChoice == 3) {
+                System.out.println(messageInstance.SentMessage(handlingChoice));
+
+                try (FileWriter writer = new FileWriter("messages.json", true)) {
+                    writer.write(messageInstance.storeMessageJSON() + "\n");
+                    System.out.println("-> Success: Message successfully appended to 'messages.json'.");
+                } catch (IOException e) {
+                    System.out.println("-> Error saving message to JSON file: " + e.getMessage());
+                }
+
+                GlobalMessageHistory.add(messageInstance);
+                totalMessagesSent++;
+            }
         }
 
         returnTotalMessages();
