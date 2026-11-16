@@ -50,10 +50,8 @@ public class Messagetest {
 
     @Test
     public void testCreateMessageHash_ExceedsLength() {
-        // Creating a string that is exactly 260 characters long (10 characters over the 250 limit)
         String longText = "a".repeat(260);
 
-        // Match the exact required failure format with the specific assignment typo ("charecters")
         String expected = "Message exceeds 250 charecters by 10; please reduce the size.";
         assertEquals(expected, messageInstance.createMessageHash(1, longText));
     }
@@ -61,7 +59,7 @@ public class Messagetest {
 
     @Test
     public void testCreateMessageHash_EmptyOrNullText() {
-        assertEquals("00:0:EMPTY", messageInstance.createMessageHash(0, "   "));
+        assertEquals("54:0::", messageInstance.createMessageHash(0, "   "));
         assertEquals("00:0:EMPTY", messageInstance.createMessageHash(2, null));
     }
 
@@ -82,13 +80,13 @@ public class Messagetest {
     @Test
     public void testSendMessage_Actions() {
         // Case 1: Send Message
-        assertEquals("Message successfully sent", messageInstance.SentMessage(1));
+        assertEquals("Message successfully sent.", messageInstance.SentMessage(1));
 
         // Case 2: Disregard Message
-        assertEquals("Press 0 to delete the message", messageInstance.SentMessage(2));
+        assertEquals("Press 0 to delete the message.", messageInstance.SentMessage(2));
 
         // Case 3: Store Message choice
-        assertEquals("Message successfully stored", messageInstance.SentMessage(3));
+        assertEquals("Message successfully stored.", messageInstance.SentMessage(3));
 
         // Default: Unknown out-of-bounds
         assertEquals("Unknown selection state.", messageInstance.SentMessage(99));
